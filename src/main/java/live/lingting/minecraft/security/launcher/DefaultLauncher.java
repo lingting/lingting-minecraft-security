@@ -1,7 +1,10 @@
 package live.lingting.minecraft.security.launcher;
 
+import live.lingting.minecraft.security.MixinSecurityManager;
+import live.lingting.minecraft.security.domain.NetworkControl;
 import live.lingting.minecraft.security.enums.LaunchType;
 import live.lingting.minecraft.security.properties.ModProperties;
+import live.lingting.minecraft.security.properties.NetworkProperties;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,14 @@ public abstract class DefaultLauncher {
     @SneakyThrows
     public void init(Path path, String version, LaunchType type) {
         ModProperties properties = ModProperties.loadByGamePath(path);
-
+        try {
+            NetworkProperties network = properties.getNetwork();
+            NetworkControl control = network.control();
+            SecurityManager current = System.getSecurityManager();
+            MixinSecurityManager mixin = new MixinSecurityManager(current, control);
+            System.setSecurityManager(mixin);
+        } catch (Exception e) {
+            log.error("Failed to set security manager", e);
+        }
     }
 }

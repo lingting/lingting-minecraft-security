@@ -20,9 +20,11 @@ public class ModProperties {
     public static final String id = "lingting.minecraft.security";
     public static final String name = "LingtingMinecraftSecurity";
 
+    private NetworkProperties network;
 
     public static ModProperties defaultProperties() {
         ModProperties properties = new ModProperties();
+        properties.network = NetworkProperties.defaultProperties();
         return properties;
     }
 
@@ -54,5 +56,6 @@ public class ModProperties {
         if (other == null) {
             return;
         }
+        this.network.merge(other.network);
     }
 }
