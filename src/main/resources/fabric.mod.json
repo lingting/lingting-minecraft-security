@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "lingting.minecraft.security",
+  "version": "${version}",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "live.lingting.minecraft.security.launcher.FabricLauncher"
+    ]
+  },
+  "name": "LingtingMinecraftSecurity",
+  "description": "Brand new Minecraft Mod Language Package update mod.",
+  "contact": {
+    "homepage": "https://github.com/lingting/lingting-minecraft-security",
+    "issues": "https://github.com/lingting/lingting-minecraft-security/issues",
+    "sources": "https://github.com/lingting/lingting-minecraft-security"
+  },
+  "authors": [
+    {
+      "name": "lingting",
+      "contact": {
+        "homepage": "https://github.com/lingting"
+      }
+    }
+  ],
+  "license": "AGPL-3.0-only"
+}
