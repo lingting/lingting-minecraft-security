@@ -77,7 +77,7 @@ val supportMinecraftVersions = project.properties["minecraft"].toString().split(
 
 modrinth {
     token.set(System.getenv("MODRINTH_TOKEN"))
-    projectId.set("PWERr14M")
+    projectId.set("a5TuR1Gd")
     versionNumber.set("${project.version}")
     versionName.set("$modName ${project.version}")
     versionType.set("release")
