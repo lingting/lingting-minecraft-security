@@ -46,13 +46,15 @@ public class NetworkControl {
      */
     public boolean isReject(String host) {
         return CACHE.computeIfAbsent(host, k -> {
+            // 排除srv解析中尾缀的 .
+            String value = k.endsWith(".") ? k.substring(0, k.length() - 1) : k;
             // 在配置中
-            if (isContains(host)) {
+            if (isContains(value)) {
                 // 白名单放行, 黑名单拒绝
                 return !isWhite;
             }
             // 如果是IP, 走IP策略
-            if (isIp(host)) {
+            if (isIp(value)) {
                 return !allowIp;
             }
             // 不在配置策略: 白名单拒绝, 黑名单放行
